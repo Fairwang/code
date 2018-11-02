@@ -7,12 +7,12 @@ import time
 from array import *
 import numpy as np
 # import Numpy
-# import cv2
+import cv2
 import numpy
 #支付demo界面
 driver=webdriver.Chrome()
-driver.get('https://testpay.hongnaga.com/merchant.html')
-# driver.get('https://cpay.hypayde.com/merchant')
+# driver.get('https://testpay.hongnaga.com/merchant.html')
+driver.get('https://pay.hongnaga.com/merchant/login')
 # driver.get('http://47.75.86.174:8092/posa/merlogin.jsp')
 driver.maximize_window()
 driver.save_screenshot('D:\\code\\code.png')
@@ -34,11 +34,6 @@ img1=img0.save('D:\\code\\code3.png')
 img=np.array(Image.open('D:\\code\\code3.png'))
 # h,w=img.size
 # print h,w
-
-# img=png5.save('D:\\code\\code22.png')
-# img=pytesseract.image_to_string(png6)#使用image_to_string识别验证码
-# print "png999 %s"%img
-# img=array(Image.open('D:\\code\\code2.png').convert('L'),'f')
 
 h, w = img.shape[:2]
 
@@ -146,7 +141,7 @@ for y in range(0, width - 1):
                                       + int(img[x + 1, y + 1])
                                 if sum <= 4 * 245:
                                         img[x, y] = 0
-# png8=img.save('E://yanzhengma8.png')
+# png8=img.save('D:\\code\\code3.png')
+cv2.imwrite("code5.png",img)
 img111=pytesseract.image_to_string(img)#使用image_to_string识别验证码
 print "png999 %s"%img111
-
