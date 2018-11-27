@@ -23,7 +23,7 @@ class get_table():
             for td in table_td_list:  # 遍历每一个td
                 row_list.append(td.text)  # 取出表格的数据，并放入行列表里
             table_list.append(row_list)
-        print table_list
+        # print str(table_list).decode("string_escape")
         return table_list
         # 循环遍历table数据，确定查询数据的位置
         # for i in range(len(table_list)):
