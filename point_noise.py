@@ -10,14 +10,14 @@ import numpy as np
 import cv2
 import numpy
     # 点降噪
-def point_noise( x=0, y=0):
+def point_noise(file_path,x=0, y=0):
     # 9邻域框,以当前点为中心的田字框,黑点个数
     # :param x:
     # :param y:
     # :return:
     # """
-    img=np.array(Image.open('D:\\code\\code_line.png'))
-    # todo 判断图片的长宽度下限
+    img=np.array(Image.open(file_path))
+    #  判断图片的长宽度下限
     cur_pixel = img[x, y]  # 当前像素点的值
     height, width = img.shape[:2]
     for y in range(0, width - 1):

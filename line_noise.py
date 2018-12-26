@@ -2,19 +2,15 @@
 #  -*-coding: utf-8-*-
 from PIL import Image,ImageEnhance
 import pytesseract
-from selenium import webdriver
 import time
 from array import *
 import numpy as np
 # import Numpy
 import cv2
 import numpy
-def line_noise():
-    img=np.array(Image.open('D:\\code\\code3.png'))
+def line_noise(file_path):
+    img=np.array(Image.open(file_path))
     h, w = img.shape[:2]
-
-    # ！！！opencv矩阵点是反的
-    # img[1,2] 1:图片的高度，2：图片的宽度
     for y in range(1, w - 1):
         for x in range(1, h - 1):
             count = 0

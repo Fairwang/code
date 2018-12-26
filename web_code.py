@@ -16,7 +16,6 @@ import point_noise,line_noise
 driver=webdriver.Chrome()
 driver.get('https://pay.hongnaga.com/merchant/login')
 # driver.get('https://cpay.hypayde.com/merchant/login.html')
-
 driver.maximize_window()
 driver.save_screenshot('D:\\code\\code.png')
 id=driver.find_element_by_id("captcha_img")
@@ -33,7 +32,8 @@ time.sleep(5)
 img0=Image.open('D:\\code\\code2.png').convert('L')#二值化
 img1=img0.save('D:\\code\\code3.png')
 img=np.array(Image.open('D:\\code\\code3.png'))
-line_noise.line_noise()
+
+line_noise.line_noise('D:\\code\\code3.png')
 point_noise.point_noise()
 
 im_res='D:\\code\\code5.png'
