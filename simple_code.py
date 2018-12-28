@@ -4,6 +4,8 @@ from PIL import Image,ImageEnhance
 import pytesseract
 from selenium import webdriver
 import time
+
+
 # from array import *
 # import numpy as np
 #  Numpy
@@ -24,8 +26,6 @@ driver.get("https://pay.hongnaga.com/merchant/login")
 # driver.get('https://cpay.hypayde.com/merchant')
 # driver.get('http://47.75.86.174:8092/posa/merlogin.jsp')
 driver.maximize_window()
-
-
 driver.find_element_by_id("mch_id").clear()
 driver.find_element_by_id("mch_id").send_keys(12001)
 driver.find_element_by_id("password").clear()
@@ -43,7 +43,7 @@ for i in range(10):
         # link_text="验证码错误"
         if tishi==u"验证码错误":
             driver.find_element_by_id("captcha_img").click()
-            driver.save_screenshot('D:\\code\\code.png')
+            driver.save_screenshot('./easy_img/origin.png')
             id = driver.find_element_by_id("captcha_img")
             # id=driver.find_element_by_id("randImage")
             size = id.size
@@ -52,17 +52,19 @@ for i in range(10):
                       int(location['y']), \
                       int(location['x'] + size['width']), \
                       int(location['y'] + size['height']))
-            img = Image.open('D:\\code\\code.png')
+            img = Image.open('./easy_img/origin.png')
             img = img.crop(rangle)
-            img = img.save('D:\\code\\code2.png')  # 裁剪验证码
+            img = img.save('./easy_img/caijian.png')  # 裁剪验证码
             time.sleep(1)
-            img = Image.open('D:\\code\\code2.png').convert('L')  # 二ZZZ值化
+            img = Image.open('./easy_img/caijian.png').convert('L')  # 二ZZZ值化
             img = ImageEnhance.Contrast(img)  # 增强对比度
             img = img.enhance(2.0)  # 增加饱和度
-            img.save('D:\\code\\code3.png')
+            img.save('./easy_img/duibi.png')
             code = pytesseract.image_to_string(img)  # 使用image_to_string识别验证码
             a = code.strip()
             print a
+
+
             driver.find_element_by_id("captcha").clear()
             driver.find_element_by_id("captcha").send_keys(a)
             driver.find_element_by_id("sub").click()

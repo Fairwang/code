@@ -15,7 +15,7 @@ def line_noise(file_path):
         for x in range(1, h - 1):
             count = 0
             print "33"
-            # cur_pixel = img.getpixel((x, y+1))
+            # cur_pixel = easy_img.getpixel((x, y+1))
             # print"当前像素：%s"%cur_pixel
             if img[x, y + 1] >127:
                 count = count + 1

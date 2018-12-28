@@ -9,14 +9,10 @@ import cv2
 import time
 import os
 
-
-
-
-
 def clear_border(img,img_name):
   '''去除边框 '''
 
-  filename = './out_img/' + img_name.split('.')[0] + '-clearBorder.jpg'
+  filename = './out_img/' + '-clearBorder.jpg'
   h, w = img.shape[:2]
   for y in range(0, w):
     for x in range(0, h):
@@ -36,10 +32,10 @@ def interference_line(img, img_name):
   干扰线降噪
   '''
 
-  filename =  './out_img/' + img_name.split('.')[0] + '-interferenceline.jpg'
+  filename =  './out_img/' + '-interferenceline.png'
   h, w = img.shape[:2]
   # ！！！opencv矩阵点是反的
-  # img[1,2] 1:图片的高度，2：图片的宽度
+  # easy_img[1,2] 1:图片的高度，2：图片的宽度
   for y in range(1, w - 1):
     for x in range(1, h - 1):
       count = 0
@@ -63,7 +59,7 @@ def interference_point(img,img_name, x = 0, y = 0):
     :param y:
     :return:
     """
-    filename =  './out_img/' + img_name.split('.')[0] + '-interferencePoint.jpg'
+    filename =  './out_img/' + '-interferencePoint.png'
     # todo 判断图片的长宽度下限
     cur_pixel = img[x,y]# 当前像素点的值
     height,width = img.shape[:2]
@@ -162,7 +158,7 @@ def _get_dynamic_binary_image(filedir, img_name):
   自适应阀值二值化
   '''
 
-  filename =   './out_img/' + img_name.split('.')[0] + '-binary.jpg'
+  filename =   './out_img/'  + '-binary.png'
   img_name = filedir + '/' + img_name
   print('.....' + img_name)
   im = cv2.imread(img_name)
@@ -288,7 +284,7 @@ def cutting_img(im,im_position,img,xoffset = 1,yoffset = 1):
     im_start_Y = im_position[2][i][0] - yoffset
     im_end_Y = im_position[2][i][1] + yoffset
     cropped = im[im_start_Y:im_end_Y, im_start_X:im_end_X]
-    cv2.imwrite(filename + '-cutting-' + str(i) + '.jpg',cropped)
+    cv2.imwrite(filename + '-cutting-' + str(i) + '.png',cropped)
 
 
 
@@ -296,7 +292,7 @@ def main():
   filedir = './easy_img'
 
   for file in os.listdir(filedir):
-    if fnmatch(file, '*.jpeg'):
+    if fnmatch(file, '*.png'):
       img_name = file
 
       # 自适应阈值二值化
@@ -337,11 +333,11 @@ def main():
       cutting_img_num = 0
       for file in os.listdir('./out_img'):
         str_img = ''
-        if fnmatch(file, '%s-cutting-*.jpg' % img_name.split('.')[0]):
+        if fnmatch(file, '%s-cutting-*.png' % img_name.split('.')[0]):
           cutting_img_num += 1
       for i in range(cutting_img_num):
         try:
-          file = './out_img/%s-cutting-%s.jpg' % (img_name.split('.')[0], i)
+          file = './out_img/%s-cutting-%s.png' % (img_name.split('.')[0], i)
           # 识别验证码
           str_img = str_img + image_to_string(Image.open(file),lang = 'eng', config='-psm 10') #单个字符是10，一行文本是7
         except Exception as err:

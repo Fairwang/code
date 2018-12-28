@@ -53,8 +53,8 @@ for contour in contours:
 
 
 
-# png8=img.save('D:\\code\\code3.png')
+# png8=easy_img.save('D:\\code\\code3.png')
 cv2.imwrite('D:\\code\\code5.png',img, [int(cv2.IMWRITE_PNG_COMPRESSION),0])
-# cv2.imshow("code5.png",img)
+# cv2.imshow("code5.png",easy_img)
 img111=pytesseract.image_to_string(img)#使用image_to_string识别验证码
 print "png999 %s"%img111
